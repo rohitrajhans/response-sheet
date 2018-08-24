@@ -3,6 +3,8 @@
     text-align: center;
 }
 
-form > div {
-    display: block;
+@media all and (max-width: 768px) {
+    form {
+        padding: 0 5%;
+    }
 }
