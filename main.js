@@ -8,14 +8,14 @@ const form = document.forms['submit-to-sheet']
 //       .catch(error => console.error('Error!', error.message))
 //   }) 
 
-$('#submit-form').on('submit', function(e) {
+$('#submit-form').on('click', function(e) {
   e.preventDefault();
   var jqxhr = $.ajax({
-    url: scriptUrl,
+    url: url,
     method: "GET",
     dataType: "json",
     data: $form.serializeObject()
   }).success(
-    console.log("Updated");
+    // do something
   );
 })
