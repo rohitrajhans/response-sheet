@@ -1,5 +1,5 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxyHF5gdcPzHtE3VkL-21nGfqa-Pt1p0TlgRhIG2wgZIT56fWjR/exec'
-const form = document.forms['submit-to-sheet']
+const form = $('#response-form");
 
 //   form.addEventListener('submit', e => {
 //     e.preventDefault()
@@ -8,14 +8,31 @@ const form = document.forms['submit-to-sheet']
 //       .catch(error => console.error('Error!', error.message))
 //   }) 
 
-$('#submit-form').on('click', function(e) {
-  e.preventDefault();
-  var jqxhr = $.ajax({
-    url: url,
-    method: "GET",
-    dataType: "json",
-    data: $form.serializeObject()
-  }).success(
-    // do something
-  );
-})
+// $('#submit-form').on('click', function(e) {
+//   e.preventDefault();
+//   var jqxhr = $.ajax({
+//     url: scriptURL,
+//     method: "GET",
+//     dataType: "json",
+//     data: form.serialize()
+//   }).success(
+//     // do something
+//   );
+// })
+
+form.submit(function (e) {
+            $.ajax({
+                type: "GET",
+                url: scriptURL,
+                data: form.serialize(),
+                success: function (data) {
+                    // console.log(data);
+                },
+                error: function(xhr, desc, err){
+                    console.log(err);
+                }
+            });
+
+            e.preventDefault();
+        });
+
